@@ -5,9 +5,9 @@ from .registry import BACKBONES, NECKS, HEADS, DETECTORS
 
 
 def _build_module(cfg, registry, default_args):
-    assert isinstance(cfg, dict) and 'type' in cfg
+    assert isinstance(cfg.model, dict) and 'type' in cfg.model
     assert isinstance(default_args, dict) or default_args is None
-    args = cfg.copy()
+    args = cfg.model.copy()
     obj_type = args.pop('type')
     if mmcv.is_str(obj_type):
         if obj_type not in registry.module_dict:
